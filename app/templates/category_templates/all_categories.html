@@ -22,26 +22,38 @@
             </div>
         </article>
         {% else %}
-        {% for categories in categories %}
+        {% for category in all_categories  %}
         <article>
-                <a  href="{{ url_for('category.category_posts' , category_id=categories.id) }}">
-                    {% if categories.logo_url %}
+                <a  href="{{ url_for('category.category_posts' , category_id=category.id) }}">
+                    {% if category.logo_url %}
                     <span class="diamond-container">
                         <span class="diamond">
-                            <img src="{{ url_for('static', filename='/assets/logo/' ~ categories.logo_url) }}" alt="Logo">
+                            <img src="{{ url_for('static', filename='/assets/logo/' ~ category.logo_url) }}" alt="Logo">
+                        </span>
+                    </span>   
+                    {% else %} 
+                    <span class="diamond-container">
+                        <span class="diamond">
                         </span>
                     </span>   
                     {% endif %} 
                 </a>
                 <div> 
-                    <h3>{{categories.category_name}}</h3>
-                    Create by {{categories.author.name}}
-                    {% if current_user.id == 1: %}
+                    <h3>{{category.category_name}}</h3>
+                    Create by {{category.author.name}}
+                    {% if current_user.id == 1 %}
                     <div style="padding-top: 5%">
-                        <a href="{{url_for('category.update', category_id=categories.id)}}" 
-                            class="button small">EDIT</a>
-                        <a href="{{url_for('category.delete', category_id=categories.id) }}" 
-                            class="button primary small" >✘</a>
+                        <a href="{{url_for('category.update_categories', category_id=category.id)}}" class="button small">EDIT</a>
+                        <form method="POST" action="{{ url_for('category.delete_categories', category_id=category.id) }}" style="padding-top: 5%">
+                            {% if category.posts|length > 0 %}
+                                <button type="submit" class="button primary small" disabled>
+                                    Cannot be deleted ({{ category.posts|length }} posts)
+                                </button>
+                            {% else %}
+                                <button type="submit" class="button primary small">✘</button>
+                            {% endif %}
+                        </form>
+
                     </div>
                     {% endif %}
                 </div>

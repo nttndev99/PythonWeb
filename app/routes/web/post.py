@@ -83,7 +83,7 @@ def add_new_post():
     return render_template('post_templates/make-post.html', form=form)
 
 
-@post_bp.route('/update-post/<int:post_id>', methods=['GET', 'POST'])
+@post_bp.route('/update/<int:post_id>', methods=['GET', 'POST'])
 def update(post_id):
   
     form = CreatePostForm()

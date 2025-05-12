@@ -56,7 +56,7 @@ def get_paginated_categories(page=1, per_page=10):
 
     stmt = db.select(Categories).offset(offset_val).limit(per_page)
     result = db.session.execute(stmt)
-    categories = result.scalars().all()
+    all_categories = result.scalars().all()
 
     total = db.session.execute(db.select(db.func.count()).select_from(Categories)).scalar()
     total_pages = (total + per_page - 1) // per_page
@@ -64,7 +64,7 @@ def get_paginated_categories(page=1, per_page=10):
     pages = get_pagination_data(page, total_pages)
 
     return {
-        "categories": categories,
+        "all_categories": all_categories,
         "page": page,
         "per_page": per_page,
         "total": total,

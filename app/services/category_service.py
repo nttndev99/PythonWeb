@@ -68,9 +68,14 @@ def update_category(category_id, category_name, logo_file, author):
 #----- Delete -----#   
 def delete_category(category_id):
     category = Categories.query.get_or_404(category_id)
-    if category:
-        db.session.delete(category)
-        db.session.commit()
+    if not category:
+        return False, "Category does not exist."
+    if category.posts: 
+        return False, "Cannot delete because there are still related posts."
+
+    db.session.delete(category)
+    db.session.commit()
+    return True, "Category deleted."
 
 
 #----- Get category post -----#   

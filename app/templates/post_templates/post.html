@@ -16,7 +16,7 @@
     {% if current_user.id == 1 %}
     <div class="d-flex justify-content-start mb-4">
         <a class="btn btn-primary float-right"
-            href="{{url_for('post.update',post_id=post.id)}}">Edit Post</a>
+            href="{{url_for('post.update_posts',post_id=post.id)}}">Edit Post</a>
     </div>
     {% endif %}
     <hr class="major" />

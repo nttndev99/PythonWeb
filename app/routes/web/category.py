@@ -8,7 +8,7 @@ from app.services.category_service import create_new_category, delete_category, 
 
 from functools import wraps
 from flask import abort
-category_bp = Blueprint('category', __name__)
+category_bp = Blueprint('category', __name__, url_prefix="/category")
 
 
 #Create admin-only decorator
@@ -49,7 +49,7 @@ def add_new_category():
 
 
 @category_bp.route('/update-category/<int:category_id>', methods=['GET', 'POST'])
-def update(category_id):
+def update_categories(category_id):
     form = CreateCategoryForm()
     category = get_category_by_id(category_id)
     if not category:
@@ -69,12 +69,12 @@ def update(category_id):
     return render_template('category_templates/make-category.html', form=form, is_update=True)
 
 
-@category_bp.route('/delete/<int:category_id>')
+@category_bp.route('/delete-category/<int:category_id>', methods=["POST"])
 @admin_only
-def delete(category_id):
-    delete_category(category_id)
-    next_url = request.form.get('next') or url_for('category.all_categories')
-    return redirect(next_url)
+def delete_categories(category_id):
+    success, message = delete_category(category_id)
+    flash(message, "success" if success else "warning")
+    return redirect(url_for("category.all_categories"))
 
 
 @category_bp.route('/category/<int:category_id>')
