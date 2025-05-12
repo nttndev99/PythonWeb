@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+{% block content %}
+    {% if is_empty: %}
+        <h2>No results found with "{{ query }}"</h2>
+    {% else: %}
+        <h2>Search Results for "{{ query }}" : {{ count_posts }}</h2>
+        {% for post in posts %}
+        <div class="box">
+            <div class="features">
+                <article>
+                    <div class="box" style="border-radius: 1em; margin-right: 2em; font-weight: bold; ">
+                       {{ loop.index }} 
+                    </div>
+                    <a href="{{url_for('post.show_post', post_id=post.id)}}">
+                        <div class="content">
+                            {{ post.categories.category_name}}
+                            <h4> {{ post.title }} </h4>
+                            <span style="color: #373B44; font-size: 70%">
+                                (Create by {{post.author.name}} on {{post.date}}) 
+                            </span> 
+                        </div>
+                        <div style="color: #373B44"> {{ post.subtitle }} </div>
+                    </a>
+                </article>
+            </div>
+        </div>
+
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+

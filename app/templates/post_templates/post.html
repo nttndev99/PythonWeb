@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div>
+    <span class="image main">
+        <img src="{{ url_for('static', filename='assets/images/pic11.jpg') }}" alt="Logo">
+    </span>
+    <header class="main">
+        <h1>{{ post.title }}</h1>
+        <span class="meta"> Posted by <a href="#">{{ post.author.name }}</a> on {{ post.date }}
+        </span>
+    </header>
+    <p>{{ post.subtitle }} </p>
+    <hr class="major" />
+    <p>{{ post.body | safe }}
+    {% if current_user.id == 1 %}
+    <div class="d-flex justify-content-start mb-4">
+        <a class="btn btn-primary float-right"
+            href="{{url_for('post.update',post_id=post.id)}}">Edit Post</a>
+    </div>
+    {% endif %}
+    <hr class="major" />
+</div>
+
+
+
+<div class="container">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-12">
+            <div class="d-flex flex-column comment-section">
+                <div class="like p-2 cursor">
+                    {{ form.comment_text.label }}
+                </div>
+                <div class="scroll-area">
+                {% for comment in post.comments: %}
+                        <img class="rounded-circle" src="" width="40">
+                        <div class="d-flex flex-column justify-content-start ml-2">
+                            <span class="d-block font-weight-bold name">{{comment.comment_author.name}} ({{comment.date}})</span>
+                            {{comment.text|safe}}
+                        </div>
+                {% else %}
+                        <div>No comments yet.</div>
+                {% endfor %}
+                </div>
+
+                <div class="mt-2 text-right">
+                        <form method="POST">
+                        {{ form.hidden_tag() }}  
+                        <div class="row">
+                            <div class="bg-white">
+                                <div class="d-flex flex-row fs-12">
+                                    <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                                    <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                                </div>
+                            </div>
+                            <div class="md-auto mx-auto">
+                            {{ form.comment_text(class="form-control") }}
+                            <br>
+                            {{ form.submit(class="btn btn-primary") }}
+                            </div>
+                        </div>
+                        <br>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

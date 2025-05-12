@@ -1,0 +1,112 @@
+<!-- Sidebar -->
+<div id="sidebar">
+    <div class="inner">
+        {% if not current_user.is_authenticated %}
+        <header id="header" style="padding: 0">
+            <ul class="icons" style="text-align: center">
+                <li>
+                    <a href="{{ url_for('user.login') }}">
+                        <h4 class="label">LOGIN</h4>
+                    </a>
+                </li> 
+                <li>
+                    <a href="{{ url_for('user.register_user') }}">
+                        <h4 class="label">REGISTER</h4>
+                    </a>
+                </li>
+            </ul>
+        </header>
+        {% endif %}
+
+        {% if current_user.is_authenticated %}   
+        <header id="header" style="padding: 0">
+            <ul class="icons" style="text-align: center">
+                <li>
+                    <a href="/">
+                        <h3 class="label">Welcome, {{current_user.name}}!</h3>
+                    </a>
+                    <a href="{{ url_for('user.logout') }}">
+                        <span class="label">LOGOUT</span>
+                    </a>
+                </li> 
+            </ul>
+        </header>
+        {% endif %}
+
+        <!-- Section -->
+        {% if current_user.id == 1: %}
+        <section>
+            <header class="major">
+                <h2>Admin Controller</h2>
+            </header>
+            <div class="mini-posts">
+                <article>
+                    <div>
+                        <a class="button" href="{{url_for('post.add_new_post')}}">Create new post</a>
+                    </div> 
+                    <br>
+                    <div>
+                        <a class="button" href="{{url_for('category.add_new_category')}}">Create new category</a>
+                    </div> 
+                    <br>      
+                </article>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Search -->
+        <section id="search" class="alt">
+            <form method="GET" action="{{ url_for('post.search') }}">
+                <input type="text" name="q" placeholder="Search by Category or Title">
+            </form>
+        </section>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <header class="major">
+                <h2>Menu</h2>
+            </header>
+            <ul>
+                <li><a  href="{{ url_for('blog.index') }}">Homepage</a></li>
+                <li>
+                    <span class="opener">Explore</span>
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('category.all_categories') }}">All Categories</a>
+                        </li>                        
+                        <li>
+                            <a href="{{ url_for('post.all_posts') }}">All Posts</a>
+                        </li>
+                    </ul>
+
+                </li>
+                <li><a  href="{{ url_for('blog.about') }}">About</a></li>
+            </ul>
+        </nav>
+
+
+
+        <!-- Section -->
+            <section>
+                <header class="major">
+                    <h2>
+                        <a  href="{{ url_for('blog.contact') }}">  Contact with me </a>
+                    </h2>
+                </header>
+                <ul class="contact">
+                    <li class="icon solid fa-envelope"><a href="#">information@gmail.com</a></li>
+                    <li class="icon solid fa-phone">(000) 000-0000</li>
+                    <!-- <li class="icon solid fa-home">address<br />
+                    address, TN 00000-0000</li> -->
+                </ul>
+            </section>
+
+        <!-- Footer -->
+
+
+        
+        {% include 'base/footer.html' %}
+
+
+    </div>
+</div>

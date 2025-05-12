@@ -1,0 +1,73 @@
+
+.mystyles_container {
+  background-size: cover;
+  background-position: center;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container_login {
+  background-image: url('/static/assets/img/login.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container_register {
+  background-image: url('/static/assets/img/register.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mystyles_container_box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 35px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.container_form {
+    background-color: rgba(255, 255, 255, 0.9);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .container_form  label {
+    display: flex;
+    text-align: center; 
+    align-items: center;
+    justify-content: center;  
+    margin-bottom: 8px;
+  }      
+  .container_form  #submit-button {
+    display: block;
+    text-align: center; 
+    align-items: center;
+    justify-content: center;  
+    margin-bottom: 8px;
+  }      
+
+  .scroll-area {
+        height: 400px;
+        overflow-y: auto;  
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+
+
+
+

@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<!-- Page Header -->
+<div class="container_register">
+  <div class="mystyles_container_box">
+    <h1>Register</h1>
+    <p> Welcome to the LEARN BLOGS!</p>
+  </div>
+</div>
+
+<main class="mb-4">
+  <div class="container_form">
+    <form method="POST">
+        {{ form.hidden_tag() }}  <!-- CSRF token -->
+
+        <div class="row">
+            <div class="col-lg-12 col-md-10 mx-auto">
+                {{ form.name.label }} 
+                {{ form.name(class="form-control", size=50) }}
+            </div>  
+        </div>    
+
+        <div class="row">
+            <div class="col-lg-12 col-md-10 mx-auto">
+                {{ form.email.label }} 
+                {{ form.email(class="form-control", size=50) }}
+            </div>  
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-10 mx-auto">
+                {{ form.password.label }}
+                {{ form.password(class="form-control", size=50) }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-lg-12 col-md-10 mx-auto">
+              {{ form.submit(class="btn btn-primary", id="submit-button") }}
+          </div>
+        </div>
+
+    </form>
+
+
+  </div>
+</main>
+
+
+
+{% endblock %}

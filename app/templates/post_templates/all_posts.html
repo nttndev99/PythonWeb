@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+
+<section>
+    <header class="major">
+        <h2>All Posts (Page {{ page }} of {{ total_pages }})</h2>
+        <!-- New Post -->
+        {% if current_user.id == 1: %}
+        <div class="d-flex justify-content-end mb-4">
+            <a
+                class="btn btn-primary float-right"
+                href="{{url_for('post.add_new_post')}}">Create New Post
+            </a>
+        </div>
+        {% endif %}
+    </header>
+
+    {% if data == []: %}
+        <article>
+            <h3 style="color: red">Empty content.</h3>
+        </article>
+    {% else %}
+    <div class="posts">
+        {% for post in posts %}
+            <article>
+                <a href="{{url_for('post.show_post', post_id=post.id)}}" class="image">
+                    <img src="static/assets/img/login.jpg" alt="" />
+                </a>
+                <h3>{{post.title}}</h3>
+                <p>{{post.subtitle}}</p>
+                <p> 
+                    Create by <a href="#">{{post.author.name}}</a> on {{post.date}}
+                </p>
+                {% if current_user.id == 1: %}
+                <ul class="actions">
+                    <li>
+                        <a href="{{url_for('post.delete', post_id=post.id) }}" style="color: red">✘</a>
+                    </li>
+                </ul> 
+                {% endif %}
+            </article>
+        {% endfor %}
+    </div>
+    <br>
+
+    {% include 'pagination_templates/posts_pagination.html' %}
+
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+
+<div class="box">
+    <ul class="pagination" style="justify-content:center">
+        <!-- Button First Previous -->         
+        {% if page > 1 %}
+        <li>
+            <a href="{{ url_for('post.all_posts', page=1) }}">
+                <span class="button">
+                    First
+                </span> 
+            </a>   
+                <a href="{{ url_for('post.all_posts', page=page-1) }}">   
+                <span class="button">
+                    Previous
+                </span>
+            </a>
+        </li>
+        {% endif %}
+
+
+
+        {% for p in pages %}
+            {% if p == '...' %}
+                <li><span class="page">...</span></li>
+            {% elif p == page %}
+                <li><a class="page active">{{ p }}</a></li>
+            {% else %}
+                <li><a href="{{ url_for('post.all_posts', page=p) }}" class="page">{{ p }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+
+
+        <!-- Button Next Last -->         
+        {% if page < total_pages %}
+        <li>
+            <a href="{{ url_for('post.all_posts', page=page+1) }}">
+                <span class="button">
+                    Next
+                </span> 
+            </a>   
+                <a href="{{ url_for('post.all_posts', page=total_pages) }}">   
+                <span class="button">
+                Last
+                </span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
