@@ -11,10 +11,12 @@ class Users(db.Model, UserMixin):
     name: Mapped[str] = mapped_column(String(250), nullable=False)    
     email: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
     password: Mapped[str] = mapped_column(String(250), nullable=False)
-    
+        
     categories = relationship("Categories", back_populates="author")
     
     posts = relationship("Posts", back_populates="author")
     
     comments = relationship("Comment", back_populates="comment_author")
+
+
 

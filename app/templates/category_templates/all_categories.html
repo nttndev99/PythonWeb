@@ -15,33 +15,37 @@
         {% endif %}
     </header>
     <div class="features">
-    {% if all_categories == [] %}
-    <article>
-        <div class="content">
-            <h3 style="color: red">Empty content.</h3>
-        </div>
-    </article>
-    {% else %}
+        {% if all_categories == [] %}
+        <article>
+            <div class="content">
+                <h3 style="color: red">Empty content.</h3>
+            </div>
+        </article>
+        {% else %}
         {% for categories in categories %}
-        <a href="{{ url_for('category.category_posts' , category_id=categories.id) }}">
-                <article>
-                    <span class="icon fa-gem"></span>
-                    <div class="content">
-                        <h3>{{categories.category_name}}</h3>
-                        <div> 
-                            Create by {{categories.author.name}}
-                            {% if current_user.id == 1: %}
-                            <div style="padding-top: 5%">
-                                <a href="{{url_for('category.update', category_id=categories.id)}}" 
-                                    class="button small">EDIT</a>
-                                <a href="{{url_for('category.delete', category_id=categories.id) }}" 
-                                    class="button primary small" >✘</a>
-                            </div>
-                            {% endif %}
-                        </div>
+        <article>
+                <a  href="{{ url_for('category.category_posts' , category_id=categories.id) }}">
+                    {% if categories.logo_url %}
+                    <span class="diamond-container">
+                        <span class="diamond">
+                            <img src="{{ url_for('static', filename='/assets/logo/' ~ categories.logo_url) }}" alt="Logo">
+                        </span>
+                    </span>   
+                    {% endif %} 
+                </a>
+                <div> 
+                    <h3>{{categories.category_name}}</h3>
+                    Create by {{categories.author.name}}
+                    {% if current_user.id == 1: %}
+                    <div style="padding-top: 5%">
+                        <a href="{{url_for('category.update', category_id=categories.id)}}" 
+                            class="button small">EDIT</a>
+                        <a href="{{url_for('category.delete', category_id=categories.id) }}" 
+                            class="button primary small" >✘</a>
                     </div>
-                </article>
-            </a>
+                    {% endif %}
+                </div>
+        </article>
         {% endfor %}
     </div>
     {% endif %}

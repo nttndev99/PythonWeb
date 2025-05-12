@@ -35,11 +35,14 @@ def all_categories():
 def add_new_category():
     form = CreateCategoryForm()
     if form.validate_on_submit():
+        logo_file = form.logo_file.data
+        print(type(logo_file))
         create_new_category(
             form.category_name.data, 
-            form.logo_url.data, 
-            current_user)
-        return redirect(url_for('blog.index'))
+            logo_file, 
+            current_user,
+            )
+        return redirect(url_for('category.all_categories'))
     else:
         print(form.errors)
     return render_template('category_templates/make-category.html', form=form)
@@ -53,11 +56,16 @@ def update(category_id):
         return redirect(url_for('blog.index'))
     if request.method == 'GET':
         form.category_name.data = category.category_name
-        form.logo_url.data = category.logo_url
+        form.logo_file.data = category.logo_url
         current_user
     if form.validate_on_submit():
-        update_category(category_id, form.category_name.data, form.logo_url.data, current_user)
-        return redirect(url_for('blog.index'))
+        logo_file = form.logo_file.data    
+        update_category(
+            category_id, 
+            form.category_name.data, 
+            logo_file, 
+            current_user)
+        return redirect(url_for('category.all_categories'))
     return render_template('category_templates/make-category.html', form=form, is_update=True)
 
 
@@ -65,7 +73,8 @@ def update(category_id):
 @admin_only
 def delete(category_id):
     delete_category(category_id)
-    return redirect(url_for('blog.index'))
+    next_url = request.form.get('next') or url_for('category.all_categories')
+    return redirect(next_url)
 
 
 @category_bp.route('/category/<int:category_id>')

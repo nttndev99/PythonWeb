@@ -67,7 +67,27 @@
         padding: 10px;
     }
 
+.diamond-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 200px; 
+}
 
+.diamond {
+    width: 100px; 
+    height: 100px; 
+    transform: rotate(45deg); 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid #d6dff7;
+}
 
-
-
+.diamond img {
+    width: 70%; 
+    height: auto;
+    transform: rotate(-45deg); 
+}

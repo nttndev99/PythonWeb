@@ -12,7 +12,7 @@ class Categories(db.Model):
     
     author_id: Mapped[int] = mapped_column(Integer, db.ForeignKey("users.id"))
     author = relationship("Users", back_populates="categories")
-    
+        
     posts = relationship("Posts", back_populates="categories")
     
 

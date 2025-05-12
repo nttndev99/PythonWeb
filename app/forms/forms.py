@@ -3,16 +3,18 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
+from app.config import Config
+from flask_wtf.file import FileField, FileAllowed
 
 class CreateCategoryForm(FlaskForm):
     category_name = StringField("Category Name", validators=[DataRequired()])
-    logo_url = StringField("Logo", validators=[DataRequired()])
+    logo_file = FileField("Logo", validators=[FileAllowed(['png', 'jpg', 'jpeg', 'gif'])])
     submit = SubmitField("Submit") 
     
 class CreatePostForm(FlaskForm):
     title = StringField("Blog Post Title", validators=[DataRequired()])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
-    img_url = StringField("Image", validators=[DataRequired()])
+    img_url = StringField("Image")
     categories = SelectField("Categories", coerce=int, validators=[DataRequired()])
     body = CKEditorField("Blog Content", validators=[DataRequired()])
     submit = SubmitField("Submit Post") 
@@ -22,7 +24,7 @@ class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
     submit = SubmitField("Register")
-    
+     
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])

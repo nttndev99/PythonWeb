@@ -16,8 +16,9 @@ class Config:
     
     # Flask - PostgreSQL
     #SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{USERNAME}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
-    
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    LOGO_IMAGES_FOLDER = 'app/static/assets/logo'  
 
 
     
