@@ -3,9 +3,9 @@
 ## 🚀 Mục Lục
 
 1. [Giới Thiệu](#giới-thiệu)
-2. [Cài Đặt](#cài-đặt)
+2. [Công Nghệ - Kiến Thức ](#công-nghệ-kiến-thức)
+3. [Cài Đặt](#cài-đặt)
 4. [Cấu Trúc Thư Mục](#cấu-trúc-thư-mục)
-5. [Công Nghệ - Kiến Thức ](#công-nghệ-kiến-thức)
 
 ---
 
