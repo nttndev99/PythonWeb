@@ -24,13 +24,15 @@
     <div class="posts">
         {% for post in posts %}
             <article>
-                    <a href="{{url_for('post.show_post', post_id=post.id)}}" class="image">
+                <div class="box">
+                    <a href="{{url_for('post.show_post', post_id=post.id)}}">
                         {% if post.images %}
-                            <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
+                            <img class="post-thumbnail" src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
                         {% else %}
-                            <img src="static/assets/images/login.jpg" alt="Images" />
+                            <img class="post-thumbnail" src="static/assets/img/empty.png" alt="Images" />
                         {% endif %}
                     </a>
+                </div>
                 <h3>{{post.title}}</h3>
                 <p>{{post.subtitle}}</p>
                 <p> 

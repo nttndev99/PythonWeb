@@ -8,6 +8,15 @@
         <article>
             <div class="box" style="border-radius: 1em; margin-right: 2em; font-weight: bold; ">
                 {{ loop.index }} 
+                    {% if categories.logo_url  and post.images|length > 0 %}
+                    <span class="img-post-category">
+                        <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}">
+                    </span>
+                    {% else %} 
+                    <span class="img-post-category">
+                        <img class="post-thumbnail" src="{{ url_for('static', filename='assets/img/empty.png') }}" alt="Image" />
+                    </span>
+                    {% endif %} 
             </div>
             <a href="{{url_for('post.show_post', post_id=post.id)}}">
                 <div class="content">

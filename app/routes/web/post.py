@@ -29,7 +29,7 @@ def admin_only(f):
 @post_bp.route('/all_posts')
 def all_posts():
     page = request.args.get("page", 1, type=int)
-    data = get_paginated_posts(page=page, per_page=4)
+    data = get_paginated_posts(page=page, per_page=6)
     return render_template("post_templates/all_posts.html", **data)
 
 

@@ -92,3 +92,27 @@
     transform: rotate(-45deg); 
 }
 
+.img-post-category {
+    width: 100px; 
+    height: 100px; 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-post-category  img {
+    width: 70%; 
+    height: auto;
+}
+
+ .post-thumbnail {
+    max-width: 300px;   /* hoặc 100% nếu responsive */
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    display: block;
+}
+.image {
+    display: inline-block;
+}
