@@ -1,7 +1,7 @@
 
 from datetime import datetime
 from app.models.category import Categories
-from app.models.post import Posts
+from app.models.post import ImagesPost, Posts
 from app.models.user import Users
 from app.extensions import db
 
@@ -49,7 +49,6 @@ def seed_data():
                 title='Python',
                 subtitle='Test',
                 date= time_str,
-                img_url='Test',
                 body='Test',
                 author=user,
                 categories=category1
@@ -58,7 +57,6 @@ def seed_data():
                 title='Java',
                 subtitle='Test',
                 date= time_str,
-                img_url='Test',
                 body='Test',
                 author=user,
                 categories=category1)        
@@ -66,7 +64,6 @@ def seed_data():
                 title='Github',
                 subtitle='Test',
                 date= time_str,
-                img_url='Test',
                 body='test',
                 author=user,
                 categories=category2) 
@@ -74,11 +71,13 @@ def seed_data():
                 title='Github2',
                 subtitle='Test',
                 date= time_str,
-                img_url='Test',
                 body='test',
                 author=user,
                 categories=category2)
-            db.session.add_all([user, category1, category2, category3, category4, post1, post2, post3, post4])
+            img1 = ImagesPost(filename="image1.jpg", post=post1)
+            img2 = ImagesPost(filename="image2.jpg", post=post1)
+            img3 = ImagesPost(filename="image3.jpg", post=post1)
+            db.session.add_all([user, category1, category2, category3, category4, post1, post2, post3, post4, img1, img2, img3])
             db.session.commit()
             print("✅ Seed data created successfully!")
         else:

@@ -19,6 +19,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     LOGO_IMAGES_FOLDER = 'app/static/assets/logo'  
-
+    POSTS_IMAGES_FOLDER = 'app/static/assets/post_images'  
 
     

@@ -24,9 +24,13 @@
     <div class="posts">
         {% for post in posts %}
             <article>
-                <a href="{{url_for('post.show_post', post_id=post.id)}}" class="image">
-                    <img src="static/assets/img/login.jpg" alt="" />
-                </a>
+                    <a href="{{url_for('post.show_post', post_id=post.id)}}" class="image">
+                        {% if post.images %}
+                            <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
+                        {% else %}
+                            <img src="static/assets/images/login.jpg" alt="Images" />
+                        {% endif %}
+                    </a>
                 <h3>{{post.title}}</h3>
                 <p>{{post.subtitle}}</p>
                 <p> 
@@ -35,7 +39,7 @@
                 {% if current_user.id == 1: %}
                 <ul class="actions">
                     <li>
-                        <a href="{{url_for('post.delete', post_id=post.id) }}" style="color: red">✘</a>
+                        <a href="{{url_for('post.delete_posts', post_id=post.id) }}" style="color: red">✘</a>
                     </li>
                 </ul> 
                 {% endif %}

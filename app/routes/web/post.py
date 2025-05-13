@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint,  flash, redirect, render_template, request, url_for
 from flask_login import current_user
 from app.forms.forms import CommentForm, CreatePostForm
 from app.models.category import Categories
@@ -66,51 +66,58 @@ def add_new_post():
     author = current_user
     form.categories.choices = [(c.id, c.category_name) for c in Categories.query.all()]
     
+
     if form.validate_on_submit():
         categories = Categories.query.get(form.categories.data)
         create_new_post(
             form.title.data, 
             form.subtitle.data, 
             time_str,
-            form.img_url.data,
             form.body.data,
             author,
             categories,
+            images=form.images.data
         )
+        flash("Create success!", "success")
         return redirect(url_for('post.all_posts'))
     else:
         print(form.errors)
     return render_template('post_templates/make-post.html', form=form)
 
 
-@post_bp.route('/update/<int:post_id>', methods=['GET', 'POST'])
-def update(post_id):
-  
-    form = CreatePostForm()
-    current_time = datetime.now()
-    time_str = current_time.strftime("%Y-%m-%d %H:%M:%S")
-    author = current_user
-    form.categories.choices = [(c.id, c.category_name) for c in Categories.query.all()]
-    categories = Categories.query.get(form.categories.data)
-
+@post_bp.route('/update-post/<int:post_id>', methods=['GET', 'POST'])
+def update_posts(post_id):
     post = get_post_by_id(post_id)
     if not post:
         return redirect(url_for('post.all_posts'))
+
+    form = CreatePostForm(obj=post)
+    form.categories.choices = [(c.id, c.category_name) for c in Categories.query.all()]
+
+    form.title.data = post.title
+    form.subtitle.data = post.subtitle
+    form.body.data = post.body
+    form.categories.data = post.categories.id if post.categories else None
     if request.method == 'GET':
-        form.title.data = post.title
-        form.subtitle.data = post.subtitle
-        form.img_url.data = post.img_url
-        form.body.data = post.body
-   
+        for image in post.images:
+            form.old_images.append_entry({'id': image.id, 'delete': False})
+
     if form.validate_on_submit():
-        update_post(post_id, form.title.data, form.subtitle.data, time_str, form.img_url.data, form.body.data, author, categories)
+        update_post(datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    current_user,
+                    Categories.query.get(form.categories.data),
+                    post,
+                    form)
         return redirect(url_for('post.all_posts'))
-    return render_template('post_templates/make-post.html', form=form, is_update=True)
+    else:
+        print("Form errors:", form.errors) 
+
+    return render_template('post_templates/make-post.html', form=form, post=post, is_update=True)
 
 
-@post_bp.route('/delete/<int:post_id>')
+@post_bp.route('/delete-post/<int:post_id>')
 @admin_only
-def delete(post_id):
+def delete_posts(post_id):
     delete_post(post_id)
     return redirect(url_for('post.all_posts'))
 

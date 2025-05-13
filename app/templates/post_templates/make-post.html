@@ -20,8 +20,9 @@
 <!-- Main Content -->
 <main class="mb-4">
   <div class="container">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {{ form.hidden_tag() }}  <!-- CSRF token -->
+       
 
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
@@ -29,21 +30,12 @@
                 {{ form.title(class="form-control", size=50) }}
             </div>  
         </div>    
-
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 {{ form.subtitle.label }} 
                 {{ form.subtitle(class="form-control", size=50) }}
             </div>  
         </div>
-
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-              {{ form.img_url.label }} 
-              {{ form.img_url(class="form-control", size=50) }}
-          </div>  
-      </div>
-
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 {{ form.body.label }}
@@ -55,7 +47,33 @@
                 {{ form.categories.label }}
                 {{ form.categories(class="form-control") }}
             </div>
+        </div>        
+
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">  
+          <h3> Old Images </h3>
+          <div class="row row-cols-1 row-cols-md-3 g-3">
+            {% for img_form in form.old_images %}
+              {% set image_obj = post.images[loop.index0] %}
+              <div>
+                <img src="{{ url_for('static', filename='assets/post_images/' ~ image_obj.filename) }}"
+                    width="150" class="img-thumbnail mb-2">
+                {{ img_form.form.id}}  <!-- HiddenField chứa ID -->
+                <div class="form-check">
+                  {{ img_form.delete(class_="form-check-input") }}
+                  {{ img_form.delete.label(class_="form-check-label") }}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            {{ form.images.label }}
+            {{ form.images(class_="form-control", multiple=True) }}
+          </div>
         </div>
+      </div>    
+      
+
         <br>
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">

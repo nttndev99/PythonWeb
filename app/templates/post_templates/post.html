@@ -3,7 +3,13 @@
 
 <div>
     <span class="image main">
-        <img src="{{ url_for('static', filename='assets/images/pic11.jpg') }}" alt="Logo">
+        {% if post.images %}
+            <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
+        {% endif %}
+
+        {% for img in post.images %}
+        <img src="{{ url_for('static', filename='/assets/post_images/' + img.filename) }}" width="300" />
+        {% endfor %}
     </span>
     <header class="main">
         <h1>{{ post.title }}</h1>
