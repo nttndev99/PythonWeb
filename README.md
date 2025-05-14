@@ -14,6 +14,7 @@
 ## 📝 MỤC TIÊU DỰ ÁN
 
 **BLOG PROJECT** Xây dựng ứng dụng web tích hợp: 
+
 Hệ thống quản lý bài viết (Giao diện form + WTforms):
 
 - Thêm, xóa, sửa bài viết đối với tài khoản được cấp quyền
