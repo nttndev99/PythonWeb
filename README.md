@@ -54,15 +54,15 @@ Tích hợp (Machine Learning model) + Flask API
 ---
 
 ## 🧱 KIẾN TRÚC HỆ THỐNG
-Framework: Flask (service-based structure, Flask Blueprint)
-ORM: SQLAIchemy
-Database: SQLite, PostgreSQL
-Authentication: Flask-Login
-API Docs: Flasgger (Swagger UI)
-Machine Learning model: scikit-learn (lưu bằng joblib)
-Phân tích CSV: pandas, numpy, matplotlib, seaborn
-Tools: Git/Github, Notion
-Deployment: Docker / Heroku / Render
+- Framework: Flask (service-based structure, Flask Blueprint)
+- ORM: SQLAIchemy
+- Database: SQLite, PostgreSQL
+- Authentication: Flask-Login
+- API Docs: Flasgger (Swagger UI)
+- Machine Learning model: scikit-learn (lưu bằng joblib)
+- Phân tích CSV: pandas, numpy, matplotlib, seaborn
+- Tools: Git/Github, Notion
+- Deployment: Docker / Heroku / Render
 
 ---
 
@@ -161,6 +161,7 @@ http://127.0.0.1:5000
 - Tạo API có tài liệu Swagger: Flask-RESTful Api + Swagger
 - Phân tích dữ liệu CSV do người dùng tải lên
 - Tích hợp (Machine Learning model) + Flask API
+
 
 
 
