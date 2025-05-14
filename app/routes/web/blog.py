@@ -1,14 +1,11 @@
 from flask import Blueprint,render_template, request
 from app.services.post_service import *
-from app.services.category_service import get_all_categories
 from app.services.smtplib_service import send_email
 blog_bp = Blueprint('blog', __name__)
 
 @blog_bp.route('/')
 def index():
-    all_posts = get_all_posts()
-    all_categories = get_all_categories()
-    return render_template("blog_templates/index.html", all_posts=all_posts, all_categories=all_categories)
+    return render_template("blog_templates/index.html")
 
 @blog_bp.route('/about')
 def about():

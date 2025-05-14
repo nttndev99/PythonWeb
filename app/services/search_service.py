@@ -14,3 +14,4 @@ def search_posts(query):
         )
     ).all()
     
+

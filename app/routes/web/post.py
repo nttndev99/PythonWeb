@@ -24,14 +24,11 @@ def admin_only(f):
         return f(*args, **kwargs)        
     return decorated_function
   
-  
-
 @post_bp.route('/all_posts')
 def all_posts():
     page = request.args.get("page", 1, type=int)
     data = get_paginated_posts(page=page, per_page=6)
     return render_template("post_templates/all_posts.html", **data)
-
 
 @post_bp.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
@@ -54,7 +51,6 @@ def show_post(post_id):
     if requested_post is None:
         return render_template("404.html"), 404
     return render_template("post_templates/post.html", post=requested_post, urrent_user=current_user, form=comment_form)
-
 
 @post_bp.route("/new-post", methods=["GET", "POST"])
 @admin_only
@@ -83,7 +79,6 @@ def add_new_post():
     else:
         print(form.errors)
     return render_template('post_templates/make-post.html', form=form)
-
 
 @post_bp.route('/update-post/<int:post_id>', methods=['GET', 'POST'])
 def update_posts(post_id):
@@ -114,14 +109,11 @@ def update_posts(post_id):
 
     return render_template('post_templates/make-post.html', form=form, post=post, is_update=True)
 
-
 @post_bp.route('/delete-post/<int:post_id>')
 @admin_only
 def delete_posts(post_id):
     delete_post(post_id)
     return redirect(url_for('post.all_posts'))
-
-
 
 @post_bp.route("/search")
 def search():

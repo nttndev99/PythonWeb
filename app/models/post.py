@@ -20,7 +20,7 @@ class Posts(db.Model):
     categories = relationship("Categories", back_populates="posts")
 
     comments = relationship("Comment", back_populates="parent_post", cascade="all, delete-orphan")
-
+    
     def to_dict(self):
         return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 

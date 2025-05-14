@@ -77,8 +77,7 @@ def delete_category(category_id):
     db.session.commit()
     return True, "Category deleted."
 
-
-#----- Get category post -----#   
+#----- Get posts in category -----#   
 def get_category_posts(category_id):
     posts = Posts.query.filter_by(categories_id=category_id).all()
     return posts

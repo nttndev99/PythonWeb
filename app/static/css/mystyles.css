@@ -107,12 +107,21 @@
 }
 
  .post-thumbnail {
-    max-width: 300px;   /* hoặc 100% nếu responsive */
+    max-width: 200px;   
     max-height: 200px;
-    width: auto;
-    height: auto;
+    width: 300px;
+    height: 200px;
     display: block;
 }
 .image {
     display: inline-block;
 }
+
+.box-to-the-top {
+    border-radius: 0.375em;
+    border: rgba(210, 215, 217, 0.75);
+    margin-bottom: 2em;
+    padding: 1.5em;
+    text-align: right;
+}
+

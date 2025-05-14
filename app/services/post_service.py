@@ -18,7 +18,6 @@ def get_all_posts():
     posts = result.scalars().all()
     return posts
 
-
 #----- Create posts -----#
 def create_new_post(title, subtitle, datetime_str, body, author, categories, images):
     safe_body = clean(body)  # cleanify the body content (CKEditor)
@@ -89,9 +88,7 @@ def update_post(datetime_str, author, categories, post, form):
             db.session.add(ImagesPost(filename=filename, post=post))
 
     db.session.commit()
-    
-    
-    
+     
 #----- Delete post -----#   
 def delete_post(post_id):
     post = Posts.query.get_or_404(post_id)

@@ -129,15 +129,15 @@ def seed_data():
                 author=user,
                 categories=category5)
             img1 = ImagesPost(filename="Python-Programming-Language.png", post=post1)
-            img2 = ImagesPost(filename="pgsql.jpeg", post=post4)
+            img2 = ImagesPost(filename="pgsql.jpg", post=post4)
             img3 = ImagesPost(filename="github.jpeg", post=post5)
-            img4 = ImagesPost(filename="anaconda.jpeg", post=post6)
+            img4 = ImagesPost(filename="anaconda.jpg", post=post6)
             img5 = ImagesPost(filename="Pandas-Library-of-Python.jpeg", post=post7)
             img6 = ImagesPost(filename="NumPy.jpeg", post=post8)
             img7 = ImagesPost(filename="matplotlib.jpeg", post=post9)
             img8 = ImagesPost(filename="JupyterLab.jpeg", post=post10)
-            img9 = ImagesPost(filename="Flask.jpeg", post=post2)
-            img10 = ImagesPost(filename="sqlite.jpeg", post=post3)
+            img9 = ImagesPost(filename="Flask.jpg", post=post2)
+            img10 = ImagesPost(filename="sqlite.jpg", post=post3)
             db.session.add_all([user, 
                                 category1, category2, category3, category4, category5, category6, 
                                 post1, post2, post3, post4, post5, post6, post7, post8, post9, post10,
