@@ -2,7 +2,7 @@
 {% block content %}
 <!-- Section -->
 <section>
-<header class="major">
+    <header class="major">
         <h2>All Categories (Page {{ page }} of {{ total_pages }})</h2>
         <!-- New Post -->
         {% if current_user.id == 1: %}
@@ -44,7 +44,7 @@
                     {% if current_user.id == 1 %}
                     <div style="padding-top: 5%">
                         <a href="{{url_for('category.update_categories', category_id=category.id)}}" class="button small">EDIT</a>
-                        <form method="POST" action="{{ url_for('category.delete_categories', category_id=category.id) }}" style="padding-top: 5%">
+                        <form id="delete-form" method="POST" action="{{ url_for('category.delete_categories', category_id=category.id) }}" style="padding-top: 5%">
                             {% if category.posts|length > 0 %}
                                 <button type="submit" class="button primary small" disabled>
                                     Cannot be deleted ({{ category.posts|length }} posts)
@@ -64,9 +64,8 @@
 </section>
 <hr>
 
+
+
 {% include 'pagination_templates/categories_pagination.html' %}
-
-
-
 
 {% endblock %}

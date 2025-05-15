@@ -92,9 +92,16 @@ def update_post(datetime_str, author, categories, post, form):
 #----- Delete post -----#   
 def delete_post(post_id):
     post = Posts.query.get_or_404(post_id)
-    if post:
+    if not post:
+        return False, "Post not found"
+
+    try:
         db.session.delete(post)
         db.session.commit()
+        return True, "Post deleted successfully"
+    except Exception as e:
+        db.session.rollback()
+        return False, str(e)
 
 
 

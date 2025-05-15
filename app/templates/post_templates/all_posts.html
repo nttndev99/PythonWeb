@@ -41,7 +41,9 @@
                 {% if current_user.id == 1: %}
                 <ul class="actions">
                     <li>
-                        <a href="{{url_for('post.delete_posts', post_id=post.id) }}" style="color: red">✘</a>
+                        <form id="delete-form" method="POST" action="{{ url_for('post.delete_post_route', post_id=post.id) }}">
+                            <button type="submit" class="button primary small">✘</button>
+                        </form>
                     </li>
                 </ul> 
                 {% endif %}

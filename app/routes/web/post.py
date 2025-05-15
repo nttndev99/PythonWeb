@@ -109,10 +109,14 @@ def update_posts(post_id):
 
     return render_template('post_templates/make-post.html', form=form, post=post, is_update=True)
 
-@post_bp.route('/delete-post/<int:post_id>')
+@post_bp.route('/delete-post/<int:post_id>', methods=['POST'])
 @admin_only
-def delete_posts(post_id):
-    delete_post(post_id)
+def delete_post_route(post_id):
+    success, message = delete_post(post_id)
+    if success:
+        flash(message, 'success')
+    else:
+        flash(message, 'error')
     return redirect(url_for('post.all_posts'))
 
 @post_bp.route("/search")

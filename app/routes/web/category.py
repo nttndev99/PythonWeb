@@ -73,7 +73,7 @@ def update_categories(category_id):
 @admin_only
 def delete_categories(category_id):
     success, message = delete_category(category_id)
-    flash(message, "success" if success else "warning")
+    flash(message, "Deleted" if success else "Warning")
     return redirect(url_for("category.all_categories"))
 
 
