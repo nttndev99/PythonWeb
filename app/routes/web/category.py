@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user
 from app.forms.forms import  CreateCategoryForm
-from app.services.paginated_service import get_paginated_categories
+from app.services.paginated_service import get_paginated_categories, get_paginated_category_posts
 from app.services.post_service import *
 from app.services.category_service import create_new_category, delete_category, get_category_by_id, get_category_posts, update_category
 
@@ -77,10 +77,13 @@ def delete_categories(category_id):
     return redirect(url_for("category.all_categories"))
 
 
-@category_bp.route('/category/<int:category_id>')
-def category_posts(category_id):    
+
+@category_bp.route('/category-posts/<int:category_id>')
+def category_posts(category_id): 
     categories = get_category_by_id(category_id)
     posts = get_category_posts(category_id)
-    count_posts = len(posts)
-    return render_template('category_templates/category_posts.html', categories=categories, posts=posts, count_posts=count_posts)
+    page = request.args.get("page", 1, type=int)
+    data = get_paginated_category_posts(page=page, per_page=6, results_search=posts)
+    total = data["total"]
+    return render_template('category_templates/category_posts.html', categories=categories, count_posts=total, **data)
 

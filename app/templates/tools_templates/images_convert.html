@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<section>
+    <header class="main">
+        <h1>🎨 Upload image to resize (golden ratio)</h1>
+    </header>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="image" class="form-control" required />
+        <br />
+        <label>Max Width (px): <input type="text" name="max_width" placeholder="e.g. 400"></label>
+        <br />
+        <label>Max Height (px): <input type="text" name="max_height" placeholder="e.g. 250"></label>
+        <br />
+        <label>Output image format:
+            <select name="format">
+                <option value="jpeg">JPEG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
+            </select>
+        </label>
+        <br /><br />
+        <input type="submit" value="Upload và Resize" />
+    </form>
+
+    {% if original_img and resized_img %}
+        <h3>Original image:</h3>
+        <img src="data:image/jpeg;base64,{{ original_img }}" style="max-width:400px;" />
+        <h3>Resized image: ({{ extension.upper() }}):</h3>
+        <div>
+            <img src="data:{{ mime_type }};base64,{{ resized_img }}" />
+            <a class="button" href="data:{{ mime_type }};base64,{{ resized_img }}" download="resized.{{ extension }}">
+                Download 
+             </a>
+        </div>
+     
+    {% endif %}
+</section>
+
+
+{% endblock %}

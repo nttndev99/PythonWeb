@@ -3,6 +3,7 @@ from sqlalchemy import select
 from app.models.post import Posts
 from app.models.category import Categories
 from app.extensions import db
+from app.services.search_service import search_posts
 
 
 def get_pagination_data(page: int, total_pages: int, max_visible_pages: int = 6):
@@ -28,7 +29,6 @@ def get_pagination_data(page: int, total_pages: int, max_visible_pages: int = 6)
         pages.append("...")
     pages.append(total_pages)
     return pages
-
 
 def get_paginated_posts(page=1, per_page=10):
     offset_val = (page - 1) * per_page
@@ -71,3 +71,44 @@ def get_paginated_categories(page=1, per_page=10):
         "total_pages": total_pages,
         "pages": pages,  
     }
+
+def get_paginated_search(page=1, per_page=10, results_search=None):
+    offset_val = (page - 1) * per_page
+
+    stmt = results_search.offset(offset_val).limit(per_page)
+    all_categories_posts = stmt.all()
+
+    total = results_search.order_by(None).count()  
+    total_pages = (total + per_page - 1) // per_page
+
+    pages = get_pagination_data(page, total_pages)
+
+    return {
+        "all_categories_posts": all_categories_posts,
+        "page": page,
+        "per_page": per_page,
+        "total": total,
+        "total_pages": total_pages,
+        "pages": pages,  
+    }
+   
+def get_paginated_category_posts(page=1, per_page=10, results_search=None):
+    offset_val = (page - 1) * per_page
+
+    stmt = results_search.offset(offset_val).limit(per_page)
+    all_categories_posts = stmt.all()
+
+    total = results_search.order_by(None).count()  
+    total_pages = (total + per_page - 1) // per_page
+
+    pages = get_pagination_data(page, total_pages)
+
+    return {
+        "all_categories_posts": all_categories_posts,
+        "page": page,
+        "per_page": per_page,
+        "total": total,
+        "total_pages": total_pages,
+        "pages": pages,  
+    } 
+    

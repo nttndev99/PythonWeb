@@ -22,6 +22,7 @@
         <header id="header" style="padding: 0">
             <ul class="icons" style="text-align: center">
                 <li>
+                    <i class="fa fa-user-circle fa-4x" aria-hidden="true"></i>
                     <a href="/">
                         <h3 class="label">Welcome, {{current_user.name}}!</h3>
                     </a>
@@ -41,70 +42,123 @@
             </header>
             <div class="mini-posts">
                 <article>
-                    <div>
-                        <a class="button" href="{{url_for('post.add_new_post')}}">Create new post</a>
+                    <div class="box">
+                        <p>
+                            <a class="button" href="{{url_for('category.add_new_category')}}">Create new category</a> 
+                        </p>
+                    </div>  
+                    <div class="box">
+                        <p>
+                            <a class="button" href="{{url_for('post.add_new_post')}}">Create new post</a> 
+                        </p>
                     </div> 
-                    <br>
-                    <div>
-                        <a class="button" href="{{url_for('category.add_new_category')}}">Create new category</a>
-                    </div> 
-                    <br>      
                 </article>
             </div>
         </section>
+      
         {% endif %}
 
         <!-- Search -->
         <section id="search" class="alt">
-            <form method="GET" action="{{ url_for('post.search') }}">
+            <form method="GET" action="{{ url_for('search.search_category_post') }}">
                 <input type="text" name="q" placeholder="Search by Category or Title">
             </form>
         </section>
 
+
+        <!-- Section -->
+        <section>
+            <header class="major">
+                <h2>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a  href="{{ url_for('blog.index') }}">HOMEPAGE</a>                
+                </h2>   
+            </header>
+            <header class="major">   
+                <h2>
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                    <a href="{{ url_for('blog.about') }}"> BLOG CATEGORY </a>
+                </h2>
+            </header>
+            <a class="button" href="{{ url_for('category.all_categories') }}">All Categories</a> 
+            <a class="button" href="{{ url_for('post.all_posts') }}">All Posts</a>
+        </section>   
+        
+        
         <!-- Menu -->
         <nav id="menu">
             <header class="major">
-                <h2>Menu</h2>
+                <h2>
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                    TOOLS
+                </h2>
             </header>
             <ul>
-                <li><a  href="{{ url_for('blog.index') }}">Homepage</a></li>
+                 <li>
+                    <a href="{{ url_for('codemirror.editor') }}"> CodeMirror Editor </a>
+                </li>
                 <li>
-                    <span class="opener">Explore</span>
+                    <span class="opener"> Tool Generator </span>
                     <ul>
                         <li>
-                            <a href="{{ url_for('category.all_categories') }}">All Categories</a>
-                        </li>                        
+                            <a href="{{ url_for('tools.random_string_generator') }}"> Random String Generator </a>
+                        </li>
                         <li>
-                            <a href="{{ url_for('post.all_posts') }}">All Posts</a>
+                            <a href="{{ url_for('tools.hash_generator') }}"> Hash Generator </a>
                         </li>
                     </ul>
-
                 </li>
-                <li><a  href="{{ url_for('blog.about') }}">About</a></li>
+                <li>
+                    <span class="opener"> Convert Tools </span>
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('tools.text_to_morse') }}"> Convert Text to Morse Code </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('tools.images_converter') }}"> Image Convert </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('tools.number_converter') }}">Number Convert </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="opener"> Text Tools </span>
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('tools.word_counter') }}"> Word Counter </a>
+                        </li>   
+                        <li>
+                            <a href="{{ url_for('tools.text_diff_checker') }}"> Text Diff Checker </a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('tools.find_duplicates') }}"> Find Duplicate Text </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
 
 
 
         <!-- Section -->
-            <section>
-                <header class="major">
-                    <h2>
-                        <a  href="{{ url_for('blog.contact') }}">  Contact with me </a>
-                    </h2>
-                </header>
-                <ul class="contact">
-                    <li class="icon solid fa-envelope"><a href="#">information@gmail.com</a></li>
-                    <li class="icon solid fa-phone">(000) 000-0000</li>
-                    <!-- <li class="icon solid fa-home">address<br />
-                    address, TN 00000-0000</li> -->
-                </ul>
-            </section>
-
-        <!-- Footer -->
-
-
+        <section>
+            <header class="major">
+                <h2>
+                    <i class="fa fa-address-card" aria-hidden="true"></i>
+                    <a href="{{ url_for('blog.contact') }}">  CONTACT WITH ME </a>
+                </h2>   
+            </header>
+             <header class="major">   
+                <h2>
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <a href="{{ url_for('blog.about') }}"> ABOUT ME </a>
+                </h2>
+            </header>
+        </section>        
         
+
+
         {% include 'base/footer.html' %}
 
 

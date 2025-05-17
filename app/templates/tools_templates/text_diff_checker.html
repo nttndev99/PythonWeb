@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+    td.code {
+        white-space: pre-wrap;
+        word-break: break-word;
+        padding: 8px;
+        border: 1px solid #ccc;
+    }
+
+    .diff-wrapper {
+        max-height: 400px;
+        overflow: auto;
+        border: 1px solid #aaa;
+        margin-top: 1rem;
+    }
+
+    table.diff-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* Giúp cột đều nhau */
+    }
+
+    th, td {
+        text-align: left;
+        vertical-align: top;
+    }
+    .missing { background-color: #ffcccc !important; }
+    tr.equal    { background-color: #f4f4f4; }
+    tr.replace  { background-color: #fff6b0; }
+    tr.delete   { background-color: #f8d4d4; }
+    tr.insert   { background-color: #d4f8d4; }
+</style>
+<section>
+    <header class="main">
+        <h1>🔍 Text Diff Checker </h1>
+    </header>
+    <form method="POST">
+        <label>Original Text:</label><br>
+        <textarea name="text1" rows="5">{{ text1 }}</textarea><br><br>
+
+        <label>Modified Text:</label><br>
+        <textarea name="text2" rows="5">{{ text2 }}</textarea><br><br>
+
+        <button type="submit">Compare</button>
+    </form>
+    {% if diff_rows %}
+        <h3>🧾 Differences:</h3>
+        <div class="diff-wrapper">
+            <table class="diff-table">
+                <tr>
+                    <th style="width: 5%;">Line</th>
+                    <th style="width: 47%;">Original</th>
+                    <th style="width: 47%;">Modified</th>
+                </tr>
+                {% for row in diff_rows %}
+                    <tr class="{{ row.tag }}{% if not row.left or not row.right %} missing{% endif %}">
+                        <td>{{ row.line_no }}</td>
+                        <td class="code">{{ row.left|safe }}</td>
+                        <td class="code">{{ row.right|safe }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+</section>
+
+
+{% endblock %}

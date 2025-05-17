@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% block content %}
+ <section>
+    <header class="main">
+        <h1>🔐 Hash Generator</h1>
+    </header>
+    <form method="POST">
+        <label for="text">Enter text:</label><br>
+        <input type="text" name="text" value="{{ text }}" required><br><br>
+
+        <label for="algorithm">Choose algorithm:</label><br>
+        <select name="algorithm">
+            <option value="md5" {% if algorithm == 'md5' %}selected{% endif %}>MD5</option>
+            <option value="sha1" {% if algorithm == 'sha1' %}selected{% endif %}>SHA1</option>
+            <option value="sha3_224" {% if algorithm == 'sha3_224' %}selected{% endif %}>SHA3_224</option>
+            <option value="sha3_256" {% if algorithm == 'sha3_256' %}selected{% endif %}>SHA3_256</option>
+            <option value="sha3_384" {% if algorithm == 'sha3_384' %}selected{% endif %}>SHA3_284</option>
+            <option value="sha3_512" {% if algorithm == 'sha3_512' %}selected{% endif %}>SHA3_512</option>
+        </select><br><br>
+
+        <button type="submit">Generate Hash</button>
+    </form>
+
+    {% if hash_result %}
+        <h3>Hashed Result:</h3>
+        <textarea rows="3" cols="70" readonly>{{ hash_result }}</textarea>
+    {% endif %}
+</section>
+{% endblock %}

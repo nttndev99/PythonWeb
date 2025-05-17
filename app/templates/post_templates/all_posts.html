@@ -29,7 +29,7 @@
                         {% if post.images %}
                             <img class="post-thumbnail" src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
                         {% else %}
-                            <img class="post-thumbnail" src="static/assets/img/empty.png" alt="Images" />
+                            <img class="post-thumbnail"  src="{{ url_for('static', filename='assets/img/empty.png') }}"  alt="Images" />
                         {% endif %}
                     </a>
                 </div>

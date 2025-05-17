@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<section>
+    <header class="major">
+        <h2> CodeMirror Editor</h2>
+    </header>
+    <div class="editor-output-container">
+        <div class="row">
+            <div>
+                <button id="run-btn">Run</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="editor-wrapper">
+                <textarea id="editor"></textarea>
+            </div>
+            <div class="output-wrapper">
+                <pre id="output">Output sẽ hiển thị ở đây</pre>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- JS CodeMirror Editor-->
+<script src="{{ url_for('static', filename='codemirror/codemirror.min.js') }}"></script>
+<script src="{{ url_for('static', filename='codemirror/javascript.min.js') }}"></script>
+<!-- Load JS CodeMirror -->
+<script>
+    const editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+        mode: "python",
+        lineNumbers: true,
+        lineWrapping: true 
+    });
+    document.getElementById("run-btn").addEventListener("click", () => {
+        const code = editor.getValue();
+        fetch("/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: code }),
+        })
+        .then(res => res.json())
+        .then(data => {
+        document.getElementById("output").textContent = data.result;
+        });
+    });
+</script>
+
+{% endblock %}
+    
+

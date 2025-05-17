@@ -1,35 +1,46 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-<div>
-    <span class="image main">
-        {% if post.images %}
-            <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
-        {% endif %}
-
-        {% for img in post.images %}
-        <img src="{{ url_for('static', filename='/assets/post_images/' + img.filename) }}" width="300" />
-        {% endfor %}
-    </span>
+<!-- Content -->
+<section>
     <header class="main">
         <h1>{{ post.title }}</h1>
         <span class="meta"> Posted by <a href="#">{{ post.author.name }}</a> on {{ post.date }}
         </span>
     </header>
-    <p>{{ post.subtitle }} </p>
-    <hr class="major" />
-    <p>{{ post.body | safe }}
+
+    <span>
+        {% if post.images %}
+            <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
+        {% endif %}
+
+       <!-- {% for img in post.images %}
+        <img src="{{ url_for('static', filename='/assets/post_images/' + img.filename) }}" width="300" />
+        {% endfor %} -->
+    </span>
+
+    <div>{{ post.subtitle }}</div>
+
+    <hr>
+
+    <p>{{ post.body | safe }}</p>
     {% if current_user.id == 1 %}
     <div class="d-flex justify-content-start mb-4">
         <a class="btn btn-primary float-right"
             href="{{url_for('post.update_posts',post_id=post.id)}}">Edit Post</a>
     </div>
     {% endif %}
-    <hr class="major" />
-</div>
+    <hr>
+
+</section>
 
 
 
+
+
+
+
+<!-- Comment container -->
 <div class="container">
     <div class="d-flex justify-content-center row">
         <div class="col-md-12">

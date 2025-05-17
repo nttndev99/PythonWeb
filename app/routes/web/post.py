@@ -119,24 +119,7 @@ def delete_post_route(post_id):
         flash(message, 'error')
     return redirect(url_for('post.all_posts'))
 
-@post_bp.route("/search")
-def search():
-    query = request.args.get("q", "").strip()
-    results = search_posts(query)
 
-    if not query:
-        flash("Please enter a search term.")
-        return redirect(request.referrer or url_for("post.search"))
-    if len(results) == 1:
-        return redirect(url_for("post.show_post", post_id=results[0].id))
-    elif len(results) > 1:
-        flash(f"Found {len(results)} results. Please refine your search.")
-        return render_template("search_templates/more_results.html", posts=results, query=query, count_posts=len(results))
-    elif len(results) < 1:
-        flash("No results found.")
-        return render_template("search_templates/more_results.html", posts=results, query=query,  is_empty=True)
-    else:
-        return redirect(request.referrer or url_for("post.search"))
 
 
 

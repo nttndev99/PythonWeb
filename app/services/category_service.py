@@ -79,5 +79,4 @@ def delete_category(category_id):
 
 #----- Get posts in category -----#   
 def get_category_posts(category_id):
-    posts = Posts.query.filter_by(categories_id=category_id).all()
-    return posts
+    return Posts.query.join(Categories).options(joinedload(Posts.categories)).filter(Categories.id == category_id)

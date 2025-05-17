@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<section>
+    <header class="main">
+        <h1> 🔄 Random String Generator </h1>
+    </header>
+    <form method="POST">
+        <label>String Length:</label>
+        <input type="number" name="length" value="8" min="4" max="64" class="form-control w-25 p-3" ><br>
+        <input type="checkbox" id="use_upper" name="use_upper" checked> 
+        <label for="use_upper"> Include Uppercase </label>    
+        <input type="checkbox" id="use_digits" name="use_digits" checked> 
+        <label for="use_digits"> Include Digits </label> 
+        <input type="checkbox" id="use_symbols" name="use_symbols" > 
+        <label for="use_symbols">  Include Symbols </label>
+        <button type="submit">Generate</button>
+    </form>
+
+    {% if random_string %}
+        <h3>Generated String:</h3>
+        <textarea readonly rows="2" cols="40">{{ random_string }}</textarea>
+    {% endif %}
+</section>
+
+{% endblock %}

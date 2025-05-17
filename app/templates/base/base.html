@@ -16,7 +16,8 @@
         <link href="{{ url_for('static', filename='css/mystyles.css')}}" rel="stylesheet" />
         <!-- CSS Index-->
         <link href="{{ url_for('static', filename='css/w3.css')}}" rel="stylesheet" />
-
+        <!-- CSS CodeMirror Editor-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='codemirror/codemirror.min.css') }}">
 
     </head>
     <body class="is-preload">
@@ -28,7 +29,7 @@
                 {% block content %}
                     
                 {% endblock %}
-                    <div class="box-to-the-top">
+                    <div class="box-to-the-top"> <!--  -->
                         <a href="#" class="button"><i class="fa fa-arrow-up w3-margin-right"></i> To the top</a>
                     </div>
                 </div>
@@ -45,11 +46,10 @@
                 <script src="{{ url_for('static', filename='js/util.js') }}"></script>
                 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
                 <!-- SweetAlert2-->
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script src="{{ url_for('static', filename='js/sweetalert2.js') }}"></script>
                 <script>
                 document.addEventListener('DOMContentLoaded', function () {
                     const forms = document.querySelectorAll('#delete-form');
-
                     forms.forEach(function (form) {
                         const button = form.querySelector('button[type="submit"]');
                         if (!button.disabled) {
@@ -64,8 +64,7 @@
                                     confirmButtonColor: '#d33',
                                     cancelButtonColor: '#bdc3c7',
                                     confirmButtonText: 'Delete',
-                                    cancelButtonText: 'Cancel'
-
+                                    cancelButtonText: 'Cancel',
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         form.submit();
@@ -76,6 +75,7 @@
                     });
                 });
                 </script>
+
 
             {% endblock %}
 		</div>

@@ -8,9 +8,14 @@ SQLAlchemy==2.0.25
 Flask_CKEditor==1.0.0
 datetime==5.1
 Flask_Login==0.6.3
-
+bleach
 psycopg2-binary
+pandas
+matplotlib
+seaborn
+
+pillow
 
 # python -m pip install -r requirements.txt
+# npm install codemirror
 # pip install --upgrade Flask-CKEditor
-# pip install bleach

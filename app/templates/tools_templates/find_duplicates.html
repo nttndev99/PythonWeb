@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+.result-box {
+    max-height: 300px;
+    overflow: auto;
+    border: 1px solid #ccc;
+    padding: 8px;
+    background: #fafafa;
+    margin-bottom: 1em;
+}
+</style>
+<section>
+    <header class="main">
+        <h1>🔎 Find Duplicates</h1>
+     </header>
+    <form method="POST">
+        <label>Enter text:</label><br>
+        <textarea name="input_text" rows="10" cols="70">{{ input_text }}</textarea><br><br>
+
+        <input type="checkbox" id="check_lines" name="check_lines" {% if request.form.check_lines %}checked{% endif %}> 
+        <label for="check_lines"> Line duplicates </label>
+        <input type="checkbox" id="check_chars" name="check_chars" {% if request.form.check_chars %}checked{% endif %}> 
+        <label for="check_chars"> Character duplicates </label>
+        <input type="checkbox" id="check_words" name="check_words" {% if request.form.check_words %}checked{% endif %}> 
+        <label for="check_words"> Word duplicates </label><br>
+        <button type="submit">Find</button>
+    </form>
+
+    {% if line_dups %}
+        <h3>📄 Duplicate Lines:</h3>
+        <div class="result-box">
+            <ul>{% for line in line_dups %}<li>{{ line }}</li>{% endfor %}</ul>
+        </div>
+    {% endif %}
+
+    {% if char_dups %}
+        <h3>🔤 Duplicate Characters:</h3>
+        <div class="result-box">
+            <p>{{ char_dups | join(', ') }}</p>
+        </div>
+    {% endif %}
+
+    {% if word_dups %}
+        <h3>📝 Duplicate Words:</h3>
+        <div class="result-box">
+            <p>{{ word_dups | join(', ') }}</p>
+        </div> 
+{% endif %}
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<section>
+    <header class="main">
+        <h1>📝 Word Counter</h1>
+    </header>
+    <form method="POST">
+        <textarea name="text" rows="10" cols="60" placeholder="Enter your text here...">{{ text }}</textarea><br><br>
+        <button type="submit">Count</button>
+    </form>
+
+    {% if result %}
+        <h3>📊 Results:</h3>
+        <ul>
+            <li><strong>Words:</strong> {{ result.word_count }}</li>
+            <li><strong>Characters:</strong> {{ result.char_count }}</li>
+            <li><strong>Lines:</strong> {{ result.line_count }}</li>
+        </ul>
+
+        <h4>🔠 Word Frequency:</h4>
+        <ul>
+            {% for word, count in result.word_frequency.items() %}
+                <li>{{ word }}: {{ count }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</section>
+{% endblock %}

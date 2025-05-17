@@ -1,38 +1,60 @@
 {% extends "base/base.html" %}
 {% block content %}
 
-<h2> Category: "{{ categories.category_name }}" have {{ count_posts }} posts</h2>
-{% for post in posts %}
-<div class="box">
-    <div class="features">
-        <article>
-            <div class="box" style="border-radius: 1em; margin-right: 2em; font-weight: bold; ">
-                {{ loop.index }} 
-                    {% if categories.logo_url  and post.images|length > 0 %}
-                    <span class="img-post-category">
-                        <img src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}">
-                    </span>
-                    {% else %} 
-                    <span class="img-post-category">
-                        <img class="post-thumbnail" src="{{ url_for('static', filename='assets/img/empty.png') }}" alt="Image" />
-                    </span>
-                    {% endif %} 
-            </div>
-            <a href="{{url_for('post.show_post', post_id=post.id)}}">
-                <div class="content">
-                    {{ post.categories.category_name}}
-                    <h4> {{ post.title }} </h4>
-                    <span style="color: #373B44; font-size: 70%">
-                        (Create by {{post.author.name}} on {{post.date}}) 
-                    </span> 
-                </div>
-                <div style="color: #373B44"> {{ post.subtitle }} </div>
+
+<section>
+    <header class="major">
+    <h2> Category: "{{ categories.category_name }}" have {{ count_posts }} posts</h2>
+        <!-- New Post -->
+        {% if current_user.id == 1: %}
+        <div class="d-flex justify-content-end mb-4">
+            <a
+                class="btn btn-primary float-right"
+                href="{{url_for('post.add_new_post')}}">Create New Post
             </a>
+        </div>
+        {% endif %}
+    </header>
+    {% if data == []: %}
+        <article>
+            <h3 style="color: red">Empty content.</h3>
         </article>
+    {% else %}
+    <div class="posts">
+        {% for post in all_categories_posts %}
+        <article>
+            <div class="box">
+                <a href="{{url_for('post.show_post', post_id=post.id)}}">
+                    {% if post.images %}
+                        <img class="post-thumbnail" src="{{ url_for('static', filename='/assets/post_images/' ~ post.images[0].filename) }}" alt="Images" />
+                    {% else %}
+                        <img class="post-thumbnail" src="{{ url_for('static', filename='assets/img/empty.png') }}" alt="Images" />
+                    {% endif %}
+                </a>
+            </div>
+            <h3>{{post.title}}</h3>
+            <p>{{post.subtitle}}</p>
+            <p> 
+                Create by <a href="#">{{post.author.name}}</a> on {{post.date}}
+            </p>
+            {% if current_user.id == 1: %}
+            <ul class="actions">
+                <li>
+                    <form id="delete-form" method="POST" action="{{ url_for('post.delete_post_route', post_id=post.id) }}">
+                        <button type="submit" class="button primary small">✘</button>
+                    </form>
+                </li>
+            </ul> 
+            {% endif %}
+        </article>
+        {% endfor %}
     </div>
-</div>
-{% endfor %}
+    {% endif %}
+</section>
+{% include 'pagination_templates/categories_posts_pagination.html' %}
+
 
 {% endblock %}
+
 
 
