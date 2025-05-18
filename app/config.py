@@ -20,5 +20,6 @@ class Config:
 
     LOGO_IMAGES_FOLDER = 'app/static/assets/logo'  
     POSTS_IMAGES_FOLDER = 'app/static/assets/post_images'  
-
     
+    # Session FILE CSV
+    SESSION_TYPE = 'filesystem'

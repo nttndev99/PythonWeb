@@ -6,7 +6,6 @@ from app.models.category import Categories
 from app.services.paginated_service import get_paginated_posts
 from app.services.post_service import *
 from app.services.comment_service import create_comment
-from app.services.search_service import search_posts
 from functools import wraps
 from flask import abort
 post_bp = Blueprint('post', __name__)

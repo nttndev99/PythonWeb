@@ -77,11 +77,17 @@
             <header class="major">   
                 <h2>
                     <i class="fa fa-file" aria-hidden="true"></i>
-                    <a href="{{ url_for('blog.about') }}"> BLOG CATEGORY </a>
+                    <a> BLOG CATEGORY </a>
                 </h2>
             </header>
-            <a class="button" href="{{ url_for('category.all_categories') }}">All Categories</a> 
-            <a class="button" href="{{ url_for('post.all_posts') }}">All Posts</a>
+            <article>
+                    <p>
+                        <a class="button" href="{{ url_for('category.all_categories') }}">All Categories</a> 
+                    </p>
+                    <p>
+                        <a class="button" href="{{ url_for('post.all_posts') }}">All Posts</a>
+                    </p>
+            </article>
         </section>   
         
         
@@ -94,8 +100,11 @@
                 </h2>
             </header>
             <ul>
-                 <li>
+                <li>
                     <a href="{{ url_for('codemirror.editor') }}"> CodeMirror Editor </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('data_analysis.upload_analyze') }}"> Data Analysis </a>
                 </li>
                 <li>
                     <span class="opener"> Tool Generator </span>

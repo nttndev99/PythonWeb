@@ -10,6 +10,9 @@ from app.config import DB_NAME, HOST, PASSWORD, PORT, USERNAME, Config
 from app.extensions import db, login_manager
 from app.seeds import seed_data
 
+from flask_session import Session
+
+
 # DB PGSQL
 def create_database_if_not_exists():
     try:
@@ -38,21 +41,26 @@ def create_database_if_not_exists():
 def create_app():
     # Create database postgre
     create_database_if_not_exists()
+    
     # Default
     app = Flask(__name__)
     app.config.from_object(Config)
     register_routes(app) #Blueprints
+    
     # Lib
     CKEditor(app)
     Bootstrap(app)
     os.makedirs(os.path.join(Config.basedir, 'instance'), exist_ok=True)
+    
     # Login initialization
     login_manager.init_app(app) 
     @login_manager.user_loader
     def load_user(user_id):
         return Users.query.get(int(user_id))
+    
     # SQLAIchemy object initialization
     db.init_app(app)
+    
     # Create table - model SQLAIchemy
     with app.app_context():
         try:
@@ -62,7 +70,9 @@ def create_app():
             print("Database and tables created successfully!")
         except Exception as e:
             print(f"Error: {e}")
-            
+
+    # Session FILE CSV
+    Session(app)
 
     
     

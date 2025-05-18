@@ -15,13 +15,17 @@
 
 **BLOG PROJECT** Xây dựng ứng dụng web tích hợp: 
 
-Hệ thống quản lý bài viết (Giao diện form + WTforms):
+Hệ thống quản lý bài viết (Giao diện form + WTforms)
 
 - Thêm, xóa, sửa bài viết đối với tài khoản được cấp quyền
 - Tìm kiếm bài viết
 - Pagination
 - Để lại bình luận trên bài viết
 - Liên hệ với chủ Website bằng cách để lại thông tin email smtplib
+
+Công cụ khác
+
+- Một số công cụ để xử lý văn bản, hình ảnh
 
 Đăng ký, đăng nhập tài khoản
 
@@ -128,7 +132,7 @@ http://127.0.0.1:5000
 ## 📂 Cấu Trúc Thư Mục
 ```
 /BLOG-CAPSTONE_PROJECT
-    /app
+    /# app
         /forms
         /models
         /routes
@@ -142,20 +146,21 @@ http://127.0.0.1:5000
             /sass
             /webfonts
         /templates
-        __init__.py
-        config.py
-        extensions.py
+        ## __init__.py
+        ## config.py
+        ## extensions.py
         seeds.py
     .gitignore
     requirements.txt
     README.md
-    run.py
+    # run.py
 ```
 
 ## 🧩 CHỨC NĂNG ĐÃ VÀ ĐANG PHÁT TRIỂN
 ### ✅ Đã hoàn thành:
 - Hệ thống quản lý bài viết (Giao diện form + WTforms)
 - Đăng ký, đăng nhập tài khoản
+- Một số công cụ xử lý văn bản, hình ảnh
 
 ### 🚧 Đang phát triển:
 - Tạo API có tài liệu Swagger: Flask-RESTful Api + Swagger

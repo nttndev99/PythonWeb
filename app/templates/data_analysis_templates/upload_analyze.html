@@ -1,0 +1,110 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<section>
+    <header class="major">
+        <h2>📂 Upload CSV File</h2>
+    </header>
+
+    <div class="row gtr-200">
+
+        <div class="col-4 col-12-medium">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row gtr-uniform">
+                    <div class="col-6 col-12-xsmall">
+                        <input class="form-control" type="file" name="file" accept=".csv">
+                    </div>  
+                    <div class="col-6 col-12-xsmall">
+                        <button class="small" type="submit" name="action" value="upload"> Upload </button>
+                    </div>
+                </div>
+            </form>
+
+            {% if columns %}
+                <form method="post">
+                    <button class="small" name="action" value="head"> Head Rows</button>
+                    <button class="small" name="action" value="describe">Describe</button>
+                    <button class="small" name="action" value="columns">Columns Name</button>
+                </form>
+                <form method="post">
+                    <div class="row gtr-uniform">
+                        <input type="hidden" name="action" value="value_counts">
+                        <label>Value counts (columns):</label>
+                        <div class="col-6 col-12-xsmall">
+                            <select name="col">
+                                {% for col in columns %}
+                                <option value="{{ col }}">{{ col }}</option>
+                                {% endfor %}
+                            </select>
+                        </div> 
+                        <div class="col-6 col-12-xsmall">
+                            <button class="small" type="submit">Statistics</button>
+                        </div> 
+                    </div> 
+                </form>
+                <form method="post">
+                    <div class="row gtr-uniform">
+                        <input type="hidden" name="action" value="plot">
+                        <label>Draw a column chart:</label>
+                        <div class="col-4 col-12-xsmall">
+                            <label> Columns Name </label>
+                            <select name="col">
+                                {% for col in columns %}
+                                <option value="{{ col }}">{{ col }}</option>
+                                {% endfor %}
+                            </select>
+                        </div> 
+                        <div class="col-4 col-12-xsmall">
+                            <label> Choose Chart </label>
+                            <select name="plot_type">
+                                <option value="bar">Bar</option>
+                                <option value="line">Line</option>
+                                <option value="hist">Histogram</option>
+                            </select>
+                        </div>             
+                        <div class="col-4 col-12-xsmall">
+                            <hr>
+                            <button class="small" type="submit">Draw</button>
+                        </div> 
+                    </div> 
+                </form>
+                <form method="post">
+                    <div class="row gtr-uniform">
+                        <input type="hidden" name="action" value="filter">
+                        <div class="col-6 col-12-xsmall">
+                            <label>Filter Data:</label>
+                            <input type="text" name="condition">
+                        </div>
+                        <div class="col-6 col-12-xsmall">
+                            <hr>
+                            <button class="small" type="submit">Filter</button>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <form action="{{ url_for('data_analysis.end_analysis') }}" method="get">
+                        <a class="button primary" type="submit">End of session </a>
+                    </form>
+                </div>
+            {% endif %}
+            </div>
+
+            <div class="col-8 col-12-medium box">
+                {% if result %}
+                    <hr><h3>Results:</h3>
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        <pre>{{ result }}</pre>
+                    </div>
+                    {% endif %}
+
+                    {% if plot_url %}
+                    <hr><h3>Chart:</h3>
+                    <img src="data:image/png;base64,{{ plot_url }}">
+                {% endif %}
+            </div>    
+    </div>    
+
+</section>
+
+
+{% endblock %}
