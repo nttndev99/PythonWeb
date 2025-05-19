@@ -10,18 +10,24 @@ datetime==5.1
 Flask_Login==0.6.3
 bleach
 
+# Postgre
 psycopg2-binary
 
+# Images
 pillow
 
+# Data Analyze
 pandas
 matplotlib
 seaborn
 flask_session 
 
+# Valiadate
 email-validator
 phonenumbers
 
+
+
+
 # python -m pip install -r requirements.txt
-# npm install codemirror
 # pip install --upgrade Flask-CKEditor

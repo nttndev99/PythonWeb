@@ -174,7 +174,6 @@ http://127.0.0.1:5000
 ### 🚧 Đang phát triển:
 - Tạo API có tài liệu Swagger: Flask-RESTful Api + Swagger
 - Tích hợp (Machine Learning model) + Flask API
-- CodeMirror
 - Phân quyền tài khoản
 
 

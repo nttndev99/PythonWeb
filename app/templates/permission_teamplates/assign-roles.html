@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<section>
+    <header class="main">
+        <h1>Assign Roles</h1>
+    </header>
+ 
+    <div class="container mt-5">
+
+      <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3">
+          {{ form.roles.label(class="form-label") }}
+          <div>
+            {% for subfield in form.roles %}
+              <div class="form-check">
+                {{ subfield(class="form-check-input", id=subfield.id) }}
+                <label class="form-check-label" for="{{ subfield.id }}">
+                  {{ subfield.label.text }}
+                </label>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <button type="submit" class="small">{{ form.submit.label.text }}</button>
+        <a href="{{ url_for('admin.user_list') }}" class="btn btn-secondary ms-2">Back to User List</a>
+      </form>
+    </div>
+
+
+</section>
+{% endblock %}

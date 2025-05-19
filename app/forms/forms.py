@@ -1,7 +1,7 @@
-from wtforms import BooleanField, FieldList, FormField, HiddenField, MultipleFileField, PasswordField, SelectField, StringField, TextAreaField, ValidationError
+from wtforms import BooleanField, FieldList, FormField, HiddenField, MultipleFileField, PasswordField, SelectField, SelectMultipleField, StringField, TextAreaField, ValidationError
 from flask_wtf import FlaskForm, Form
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, URL
+from wtforms import StringField, SubmitField, widgets
+from wtforms.validators import DataRequired
 from flask_ckeditor import CKEditorField
 from app.config import Config
 from flask_wtf.file import FileField, FileAllowed
@@ -45,3 +45,15 @@ class LoginForm(FlaskForm):
 class CommentForm(FlaskForm):
     comment_text = TextAreaField("Comment", validators=[DataRequired()])
     submit = SubmitField("Submit Comment")
+    
+    
+# ------------- Asign Roles
+def AtLeastOneSelected(form, field):
+    if not field.data or len(field.data) == 0:
+        raise ValidationError('Please select at least one role.')
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+class UserRoleForm(FlaskForm):
+    roles = MultiCheckboxField("Roles", coerce=str, validators=[AtLeastOneSelected])
+    submit = SubmitField('Update Roles')

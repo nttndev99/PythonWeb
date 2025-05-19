@@ -1,6 +1,7 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 from app.forms.forms import RegisterForm, LoginForm
+from app.routes.web.permission import permission_required
 from app.services.user_service import create_user, login_service
 user_bp = Blueprint('user', __name__)
 
@@ -27,7 +28,11 @@ def login():
             user = login_service(form.email.data, form.password.data)
             if user:
                 login_user(user)
-                return redirect(url_for('user.secrets')) 
+                role_names = [role.name for role in user.roles]
+                if 'admin' in role_names:
+                    return redirect(url_for('admin.user_list'))  
+                else:
+                    return redirect(url_for('user.viewer'))
             else:
                 flash("That email does not exist, please try again.")
     return render_template('user_templates/login.html', form=form, logged_in=current_user.is_authenticated)
@@ -38,8 +43,11 @@ def logout():
     logout_user()
     return redirect(url_for('blog.index'))
 
-@user_bp.route('/secrets')
+
+@user_bp.route('/viewer')
 @login_required
-def secrets():
-    return render_template("user_templates/secrets.html", logged_in=True)
+def viewer():
+    return redirect(url_for("blog.index", logged_in=True))
+
+
 

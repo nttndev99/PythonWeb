@@ -1,6 +1,7 @@
 import os
 
 from flask import request
+import redis
 from app.models.post import ImagesPost, Posts
 from app.extensions import db
 from bleach import clean
@@ -102,6 +103,5 @@ def delete_post(post_id):
     except Exception as e:
         db.session.rollback()
         return False, str(e)
-
 
 
