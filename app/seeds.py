@@ -17,9 +17,9 @@ def seed_data():
         if not has_users and not has_posts and not has_categories:
             user = Users(
                 id=1,
-                name='Admin',
-                email='admin@email.com',
-                password='pbkdf2:sha256:1000000$j73phBAC$46592241d998f37088bb32bcd524dc49726d5d659bab21f911d6adf2c00cb296'
+                name='ADMIN',
+                email='ADMIN@gmail.com', #ADMIN@gmail.com123
+                password='pbkdf2:sha256:1000000$tJxO7kem$b1f9b758dde49495da561ecf06a319762ff9e22d1ab63c5c7f499e3b35789747'
             )
             category1 = Categories(
                 id=1,

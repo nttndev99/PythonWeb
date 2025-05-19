@@ -6,14 +6,19 @@ from flask_ckeditor import CKEditorField
 from app.config import Config
 from flask_wtf.file import FileField, FileAllowed
 
+from app.forms.validate_forms import validate_email_field, validate_password
+
 class CreateCategoryForm(FlaskForm):
     category_name = StringField("Category Name", validators=[DataRequired()])
     logo_file = FileField("Logo", validators=[FileAllowed(['png', 'jpg', 'jpeg', 'gif'])])
     submit = SubmitField("Submit") 
 
+
 class DeleteImageForm(Form):
     id = HiddenField()
     delete = BooleanField("Delete")  
+    
+    
 class CreatePostForm(FlaskForm):
     title = StringField("Blog Post Title", validators=[DataRequired()])
     subtitle = StringField("Subtitle", validators=[DataRequired()])
@@ -26,14 +31,16 @@ class CreatePostForm(FlaskForm):
     
 class RegisterForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
-    email = StringField("Email", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), validate_email_field])
+    password = PasswordField("Password", validators=[DataRequired(), validate_password])
     submit = SubmitField("Register")
      
+     
 class LoginForm(FlaskForm):
-    email = StringField("Email", validators=[DataRequired()])
-    password = PasswordField("Password", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), validate_email_field])
+    password = PasswordField("Password", validators=[DataRequired(), validate_password])
     submit = SubmitField("Login")
+    
     
 class CommentForm(FlaskForm):
     comment_text = TextAreaField("Comment", validators=[DataRequired()])

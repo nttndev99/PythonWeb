@@ -9,13 +9,19 @@ Flask_CKEditor==1.0.0
 datetime==5.1
 Flask_Login==0.6.3
 bleach
+
 psycopg2-binary
+
+pillow
+
 pandas
 matplotlib
 seaborn
-pillow
-
 flask_session 
+
+email-validator
+phonenumbers
+
 # python -m pip install -r requirements.txt
 # npm install codemirror
 # pip install --upgrade Flask-CKEditor

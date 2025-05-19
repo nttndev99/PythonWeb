@@ -26,6 +26,12 @@ Hệ thống quản lý bài viết (Giao diện form + WTforms)
 Công cụ khác
 
 - Một số công cụ để xử lý văn bản, hình ảnh
+- Công cụ CodeMirror
+
+Phân quyền tài khoản
+
+- Tạo ra các mức độ phân quyền
+- Admin có quyền tạo và điều chỉnh phân quyền
 
 Đăng ký, đăng nhập tài khoản
 
@@ -73,6 +79,7 @@ Tích hợp (Machine Learning model) + Flask API
 ## 🔄 LUỒNG TƯƠNG TÁC NGƯỜI DÙNG
 - Đăng nhập / Đăng ký
 - Quản lý bài viết 
+- Sử dụng các tools
 - Tải lên file CSV -> phân tích và trực quan hóa
 - Gửi dữ liệu đầu vào đến mô hình -> xem kết quả dự đoán
 - Dev sử dụng Swagger API để gửi request
@@ -157,15 +164,18 @@ http://127.0.0.1:5000
 ```
 
 ## 🧩 CHỨC NĂNG ĐÃ VÀ ĐANG PHÁT TRIỂN
+
 ### ✅ Đã hoàn thành:
 - Hệ thống quản lý bài viết (Giao diện form + WTforms)
 - Đăng ký, đăng nhập tài khoản
 - Một số công cụ xử lý văn bản, hình ảnh
+- Phân tích dữ liệu CSV do người dùng tải lên
 
 ### 🚧 Đang phát triển:
 - Tạo API có tài liệu Swagger: Flask-RESTful Api + Swagger
-- Phân tích dữ liệu CSV do người dùng tải lên
 - Tích hợp (Machine Learning model) + Flask API
+- CodeMirror
+- Phân quyền tài khoản
 
 
 
