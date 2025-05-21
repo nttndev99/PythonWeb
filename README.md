@@ -72,7 +72,7 @@ Tích hợp (Machine Learning model) + Flask API
 - Machine Learning model: scikit-learn (lưu bằng joblib)
 - Phân tích CSV: pandas, numpy, matplotlib, seaborn
 - Tools: Git/Github, Notion
-- Deployment: Docker / Heroku / Render
+- Deployment: Render
 
 ---
 
@@ -170,11 +170,11 @@ http://127.0.0.1:5000
 - Đăng ký, đăng nhập tài khoản
 - Một số công cụ xử lý văn bản, hình ảnh
 - Phân tích dữ liệu CSV do người dùng tải lên
+- Phân quyền tài khoản
 
 ### 🚧 Đang phát triển:
 - Tạo API có tài liệu Swagger: Flask-RESTful Api + Swagger
 - Tích hợp (Machine Learning model) + Flask API
-- Phân quyền tài khoản
 
 
 
