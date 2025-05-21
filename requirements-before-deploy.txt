@@ -31,3 +31,4 @@ gunicorn
 
 # python -m pip install -r requirements.txt
 # pip install --upgrade Flask-CKEditor
+# pip freeze > requirements.txt
