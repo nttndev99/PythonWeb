@@ -1,0 +1,142 @@
+
+.container-index{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-index .card{
+    position: relative;
+    cursor: pointer;
+    background: #e9ecef;
+}
+
+.container-index .card .face{
+    width: 300px;
+    height: 200px;
+    transition: 0.5s;
+}
+
+.container-index .card .content img {
+    max-width: 400px;
+    border: 3px solid #ccc;      /* Viền xám */
+    border-radius: 50%;          /* Làm tròn */
+    padding: 5px;                /* Tạo khoảng cách giữa ảnh và viền */
+    background-color: white;     /* Nền trắng để logo nổi bật */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* (tuỳ chọn) hiệu ứng đổ bóng nhẹ */
+}
+
+.container-index .card .face.face1{
+    position: relative;
+    background: #373B44;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    transform: translateY(100px);
+}
+
+.container-index .card:hover .face.face1{
+    background: #4286f4;
+    transform: translateY(0);
+}
+
+.container-index .card .face.face1 .content{
+    opacity: 0.7;
+    transition: 0.5s;
+}
+
+.container-index .card:hover .face.face1 .content{
+    opacity: 1;
+}
+
+.container-index .card .face.face1 .content img{
+    max-width: 100px;
+}
+
+.container-index .card .face.face1 .content h3{
+    margin: 10px 0 0;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.container-index .card .face.face2{
+    position: relative;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    transform: translateY(-100px);
+}
+
+.container-index .card:hover .face.face2{
+    transform: translateY(0);
+}
+
+.container-index .card .face.face2 .content p{
+    margin: 0;
+    padding: 0;
+}
+
+.container-index .card .face.face2 .content a{
+    margin: 15px 0 0;
+    display:  inline-block;
+    text-decoration: none;
+    font-weight: 900;
+    color: #373B44;
+    padding: 5px;
+    border: 1px solid #373B44;
+}
+
+.container-index .card .face.face2 .content a:hover{
+    background: #373B44;
+    color: #fff;
+}
+
+/* Default >=1680px: 3 cards side by side — no changes needed */
+
+@media (max-width: 1679px) and (min-width: 1280px) {
+  .container-index {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .container-index .card {
+    margin-bottom: 20px;
+    /*flex: 0 0 45%;*/ /* 2 cards per row */
+  }
+}
+
+@media (max-width: 1279px) and (min-width: 769px) {
+  .container-index {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .container-index .card {
+    margin-bottom: 20px;
+    /*flex: 0 0 45%;*/ /* 2 cards per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .container-index {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container-index .card {
+    width: 90%; /* Full width on small screens */
+    margin-bottom: 20px;
+  }
+
+  .container-index .card .face {
+    width: 100%;
+  }
+}

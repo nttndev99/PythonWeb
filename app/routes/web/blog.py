@@ -5,7 +5,8 @@ blog_bp = Blueprint('blog', __name__)
 
 @blog_bp.route('/')
 def index():
-    return render_template("blog_templates/index.html")
+    data_card = get_posts_index()
+    return render_template("blog_templates/index.html", data_card=data_card)
 
 @blog_bp.route('/about')
 def about():

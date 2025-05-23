@@ -1014,7 +1014,8 @@ label {
   display: block;
   font-size: 0.9em;
   font-weight: 600;
-  margin: 0 0 1em 0; }
+  margin: 0 0 1em 0;
+  text-align: center; }
 
 input[type="text"],
 input[type="password"],
@@ -2100,9 +2101,9 @@ button,
         font-size: 1.25em;
         margin: 0; }
       #header .icons {
-        height: 5em;
+        /* height: 5em;
         line-height: 5em;
-        position: absolute;
+        position: absolute; */
         right: -0.5em;
         top: 0; } }
 

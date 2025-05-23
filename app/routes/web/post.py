@@ -79,6 +79,7 @@ def add_new_post():
         print(form.errors)
     return render_template('post_templates/make-post.html', form=form)
 
+
 @post_bp.route('/update-post/<int:post_id>', methods=['GET', 'POST'])
 def update_posts(post_id):
     post = get_post_by_id(post_id)
@@ -107,6 +108,7 @@ def update_posts(post_id):
         print("Form errors:", form.errors) 
 
     return render_template('post_templates/make-post.html', form=form, post=post, is_update=True)
+
 
 @post_bp.route('/delete-post/<int:post_id>', methods=['POST'])
 @admin_only

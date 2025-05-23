@@ -20,17 +20,19 @@
 
         {% if current_user.is_authenticated %}   
         <header id="header" style="padding: 0">
-            <ul class="icons" style="text-align: center">
-                <li>
-                    <i class="fa fa-user-circle fa-4x" aria-hidden="true"></i>
-                    <a href="/">
-                        <h3 class="label">Welcome, {{current_user.name}}!</h3>
-                    </a>
-                    <a href="{{ url_for('user.logout') }}">
-                        <span class="label">LOGOUT</span>
-                    </a>
-                </li> 
-            </ul>
+            <section class="box">
+                <ul class="icons" style="text-align: center">
+                    <li>
+                        <i class="fa fa-user-circle fa-4x" aria-hidden="true"></i>
+                        <a href="/">
+                            <h3 class="label">Welcome, {{current_user.name}}!</h3>
+                        </a>
+                        <a href="{{ url_for('user.logout') }}">
+                            <span class="label">LOGOUT</span>
+                        </a>
+                    </li> 
+                </ul>
+            </section>
         </header>
         {% endif %}
 

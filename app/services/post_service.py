@@ -104,4 +104,7 @@ def delete_post(post_id):
         db.session.rollback()
         return False, str(e)
 
+#----- Get 3 posts index -----#   
+def get_posts_index():
+    return Posts.query.filter(Posts.title.in_(['Python', 'Flask', 'PostgreSQL'])).all()
 
