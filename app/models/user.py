@@ -7,7 +7,6 @@ from app.models.roles import roles_users
 
 class Users(db.Model, UserMixin):
     __tablename__ = "users"
-
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(250), nullable=False)    
     email: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)

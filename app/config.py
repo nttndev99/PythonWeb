@@ -5,7 +5,7 @@ PASSWORD = "123456789"
 HOST = "localhost"
 PORT = "5432"
 DB_NAME = "learn_blog_app"
-   
+
 class Config:
     # Flask-WTF
     SECRET_KEY = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"  

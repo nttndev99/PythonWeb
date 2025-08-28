@@ -1,7 +1,5 @@
 
 from datetime import datetime
-
-from sqlalchemy import insert
 from app.models.category import Categories
 from app.models.post import ImagesPost, Posts
 from app.models.roles import Role
@@ -45,14 +43,14 @@ def seed_data():
             post9 = Posts(title='Matplotlib', subtitle='Matplotlib', date= time_str, body='Matplotlib', author=user, categories=category4)            
             post10 = Posts(title='Jupyter Notebook', subtitle='Jupyter Notebook', date= time_str, body='Jupyter Notebook', author=user, categories=category5)
             img1 = ImagesPost(filename="Python-Programming-Language.png", post=post1)
-            img2 = ImagesPost(filename="pgsql.jpg", post=post4)
+            img2 = ImagesPost(filename="pgsql.png", post=post4)
             img3 = ImagesPost(filename="github.jpeg", post=post5)
             img4 = ImagesPost(filename="anaconda.jpg", post=post6)
             img5 = ImagesPost(filename="Pandas-Library-of-Python.jpeg", post=post7)
             img6 = ImagesPost(filename="NumPy.jpeg", post=post8)
             img7 = ImagesPost(filename="matplotlib.jpeg", post=post9)
             img8 = ImagesPost(filename="JupyterLab.jpeg", post=post10)
-            img9 = ImagesPost(filename="Flask.jpg", post=post2)
+            img9 = ImagesPost(filename="Flask.png", post=post2)
             img10 = ImagesPost(filename="sqlite.jpg", post=post3)
             db.session.add_all([user, 
                                 category1, category2, category3, category4, category5, category6, 

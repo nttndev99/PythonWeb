@@ -22,7 +22,7 @@ def admin_only(f):
         #Otherwise continue with the route function
         return f(*args, **kwargs)        
     return decorated_function
-  
+ 
 @post_bp.route('/all_posts')
 def all_posts():
     page = request.args.get("page", 1, type=int)

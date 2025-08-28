@@ -20,7 +20,6 @@ def get_cafe_at_location():
         return jsonify(cafes=[cafe.to_dict() for cafe in all_posts])
     else:
         return jsonify(error={"Not Found": "Error 404"}), 404
- 
 
 @blog_api_bp.route("/add", methods=["POST"])
 def post_new_cafe():
@@ -44,11 +43,11 @@ def patch_new_title(post_id):
             db.session.commit()
             return jsonify(response={"success": "Successfully"}), 200
         else:
-            return jsonify(error={"Bad Request": "Please provide a 'new_price' in the query parameters."}), 400
+            return jsonify(error={"Bad Request": "Please provide a 'ne5w_price' in the query parameters."}), 400
     else:
         return jsonify(error={"Not Found": f"Sorry, a cafe with the id '{post_id}' was not found in the database."}), 404
-    
-    
+
+
 @blog_api_bp.route("/delete/<int:post_id>", methods=["DELETE"])
 def delete(post_id):
     api_key = request.args.get("api-key")

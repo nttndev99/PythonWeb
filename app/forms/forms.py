@@ -1,9 +1,8 @@
 from wtforms import BooleanField, FieldList, FormField, HiddenField, MultipleFileField, PasswordField, SelectField, SelectMultipleField, StringField, TextAreaField, ValidationError
 from flask_wtf import FlaskForm, Form
-from wtforms import StringField, SubmitField, widgets
+from wtforms import SubmitField, widgets
 from wtforms.validators import DataRequired
 from flask_ckeditor import CKEditorField
-from app.config import Config
 from flask_wtf.file import FileField, FileAllowed
 
 from app.forms.validate_forms import validate_email_field, validate_password
@@ -34,8 +33,7 @@ class RegisterForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), validate_email_field])
     password = PasswordField("Password", validators=[DataRequired(), validate_password])
     submit = SubmitField("Register")
-     
-     
+
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), validate_email_field])
     password = PasswordField("Password", validators=[DataRequired(), validate_password])
